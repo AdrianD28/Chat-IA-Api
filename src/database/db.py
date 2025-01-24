@@ -1,7 +1,7 @@
 from flask_pymongo import pymongo
 import os
 
-client = pymongo.MongoClient(os.getenv("MONGO_URL"))
+client = pymongo.MongoClient(os.getenv("MONGO_LOCAL"))
 
 db = client.get_database("chatbot")
 
