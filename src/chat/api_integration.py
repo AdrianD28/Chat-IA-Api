@@ -91,6 +91,20 @@ def chat_logic_simplified(phone_number, prompt, ai_name=None, audio_url=None):
 
     return ai_response
 
+@chatbot_api.route('/api/v1/amigo', methods=['POST'])
+def create_friend():
+    try:
+        data = request.json
+        friend = {
+            "name": data.get("name", ""),
+            "description": data.get("description", ""),
+            "training_content": data.get("training_content", "")
+        }
+        friends_collection.insert_one(friend)
+        return jsonify({"message": "Amigo creado exitosamente."})
+    except Exception as e:
+        return str(e), 500
+
 @chatbot_api.route('/api/v1/chat/twilio', methods=['POST'])
 def chat_twilio_endpoint():
     try:
