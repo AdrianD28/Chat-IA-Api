@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  flask-app:
+    image: flask:latest
+    container_name: flask-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_LOCAL=mongodb://mongo:27017/mydatabase
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27016:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
