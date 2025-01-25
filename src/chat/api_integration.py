@@ -98,7 +98,7 @@ def create_friend():
         friend = {
             "name": data.get("name", ""),
             "description": data.get("description", ""),
-            "training_content": data.get("training_content", "")
+            "gender": data.get("gender", "")
         }
         friends_collection.insert_one(friend)
         return jsonify({"message": "Amigo creado exitosamente."})
